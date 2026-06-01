@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adding Sales Staff to a POS Store — NestERP Help</title>
+<style>
+  :root { --accent: #1E6A52; --bg: #FAFAF8; --card: #fff; --text: #23201C; --muted: #888; --border: #e0ddd8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 0; }
+  .help-header { background: var(--accent); color: #fff; padding: 32px 40px 24px; }
+  .help-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .help-header .subtitle { font-size: 14px; opacity: 0.8; }
+  .help-body { max-width: 720px; margin: 0 auto; padding: 32px 40px 60px; }
+  h2 { color: var(--accent); font-size: 18px; font-weight: 700; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+  h3 { color: var(--accent); font-size: 15px; font-weight: 600; margin: 20px 0 8px; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 12px 24px; }
+  li { margin-bottom: 6px; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; border-left: 4px solid var(--accent); }
+  .step-num { display: inline-block; background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; font-weight: 700; margin-right: 8px; }
+  .field { background: #f5f3ef; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; }
+  .route { background: #e8f5e9; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; color: var(--accent); }
+  .note { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+  .note::before { content: "Note: "; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--accent); color: #fff; text-align: left; padding: 10px 14px; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f8f7f5; }
+  .back-link { display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+  .back-link:hover { text-decoration: underline; }
+  @media (max-width: 600px) { .help-header, .help-body { padding-left: 20px; padding-right: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="help-header">
+  <h1>Adding Sales Staff to a POS Store</h1>
+  <div class="subtitle">Ardmore — ERPNext Training Guide</div>
+</div>
+
+<div class="help-body">
+
+<h2>Purpose</h2>
+<p>When a new sales person joins a store, two things need to happen in ERPNext:</p>
+<ol>
+  <li>They need a <strong>User account</strong> (so they appear in the POS dropdown)</li>
+  <li>They need to be added to the store's <strong>POS Profile</strong> (so the POS knows they work there)</li>
+</ol>
+
+<h2>Before You Start</h2>
+<ul>
+  <li>You must be logged in as an <strong>Administrator</strong> or <strong>System Manager</strong></li>
+  <li>Know the person's <strong>full name</strong> and an <strong>email address</strong> (this becomes their login ID — it doesn't need to be a real email for internal staff, e.g. <span class="field">happiness@ardmore.local</span>)</li>
+  <li>Know which <strong>POS Profile</strong> (store) they belong to</li>
+</ul>
+
+<h2>Step 1: Create the User Account</h2>
+
+<div class="step">
+  <span class="step-num">1</span> Go to the URL bar and type: <span class="route">/app/user/new</span>
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> Fill in:
+  <ul style="margin-top:8px;">
+    <li><span class="field">First Name</span> — the person's first name</li>
+    <li><span class="field">Last Name</span> — the person's last name</li>
+    <li><span class="field">Email</span> — their email address (this is also their username)</li>
+  </ul>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> Scroll down to <strong>Roles</strong> and add these two roles:
+  <ul style="margin-top:8px;">
+    <li><span class="field">POS User A</span></li>
+    <li><span class="field">Sales Assistant</span></li>
+  </ul>
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> Uncheck <span class="field">Send Welcome Email</span> (unless you want them to receive a login email)
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> Set a password in the <span class="field">Set New Password</span> field
+</div>
+
+<div class="step">
+  <span class="step-num">6</span> Click <strong>Save</strong>
+</div>
+
+<h2>Step 2: Add Them to the POS Profile</h2>
+
+<div class="step">
+  <span class="step-num">1</span> Go to the URL bar and type: <span class="route">/app/pos-profile</span>
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> Open the POS Profile for the store (e.g. <strong>POS_Test2</strong>, <strong>Airport</strong>, <strong>Joburg</strong>)
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> Scroll down to <strong>Applicable for Users</strong>
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> Click <strong>Add Row</strong>
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> In the <span class="field">User</span> field, search for and select the person you just created
+</div>
+
+<div class="step">
+  <span class="step-num">6</span> Leave <span class="field">Default</span> unchecked (unless this is the primary user for the store)
+</div>
+
+<div class="step">
+  <span class="step-num">7</span> Click <strong>Save</strong>
+</div>
+
+<div class="note">
+The new person will immediately appear in the "Select POS User" dropdown when opening the POS. The store manager logs in with their account, then selects the sales person from the dropdown. Each sale is attributed to whoever is selected.
+</div>
+
+<h2>To Remove a Sales Person</h2>
+<ol>
+  <li>Open the POS Profile for the store</li>
+  <li>In the <strong>Applicable for Users</strong> table, delete their row</li>
+  <li>Click <strong>Save</strong></li>
+  <li>Optionally, disable their User account at <span class="route">/app/user/(their email)</span> — uncheck <strong>Enabled</strong></li>
+</ol>
+
+<h2>Quick Reference</h2>
+<table>
+  <tr><th>What</th><th>Where</th><th>Action</th></tr>
+  <tr><td>Create user</td><td><span class="route">/app/user/new</span></td><td>Name + email + roles (POS User A, Sales Assistant) + password</td></tr>
+  <tr><td>Add to store</td><td><span class="route">/app/pos-profile/(store)</span></td><td>Add row in "Applicable for Users"</td></tr>
+  <tr><td>Remove from store</td><td><span class="route">/app/pos-profile/(store)</span></td><td>Delete row in "Applicable for Users"</td></tr>
+  <tr><td>Disable user</td><td><span class="route">/app/user/(email)</span></td><td>Uncheck "Enabled"</td></tr>
+</table>
+
+<a class="back-link" href="/app/nest-home">&larr; Back to Nest Home</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* nest_help — help badge styling.
+   Designed to work on any element (tiles, buttons, cards, etc.) across
+   the NestERP platform. The parent element needs position:relative
+   (injected by the JS). */
+.nh-help-badge {
+  position: absolute; top: 4px; right: 6px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--nh-tile-accent, var(--primary, #1E6A52));
+  color: #fff !important;
+  font-size: 11px; font-weight: 700; line-height: 18px; text-align: center;
+  text-decoration: none !important;
+  opacity: 0.55; transition: opacity .15s ease;
+  z-index: 5; cursor: pointer;
+}
+.nh-help-badge:hover {
+  opacity: 1;
+}
