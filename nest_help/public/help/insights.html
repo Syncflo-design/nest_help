@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights (Analytics) — NestERP Help</title>
+<style>
+  :root { --accent: #1E6A52; --bg: #FAFAF8; --card: #fff; --text: #23201C; --muted: #888; --border: #e0ddd8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 0; }
+  .help-header { background: var(--accent); color: #fff; padding: 32px 40px 24px; }
+  .help-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .help-header .subtitle { font-size: 14px; opacity: 0.8; }
+  .help-body { max-width: 720px; margin: 0 auto; padding: 32px 40px 60px; }
+  h2 { color: var(--accent); font-size: 18px; font-weight: 700; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 12px 24px; }
+  li { margin-bottom: 6px; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; border-left: 4px solid var(--accent); }
+  .step-num { display: inline-block; background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; font-weight: 700; margin-right: 8px; }
+  .field { background: #f5f3ef; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; }
+  .route { background: #e8f5e9; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; color: var(--accent); }
+  .note { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+  .note::before { content: "Note: "; font-weight: 700; }
+  .back-link { display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+  .back-link:hover { text-decoration: underline; }
+  @media (max-width: 600px) { .help-header, .help-body { padding-left: 20px; padding-right: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="help-header">
+  <h1>Insights (Analytics)</h1>
+  <div class="subtitle">NestERP Help</div>
+</div>
+
+<div class="help-body">
+
+<h2>What This Does</h2>
+<p>Insights is a powerful reporting and analytics tool built into NestERP. It lets you build custom SQL queries, create visualisation charts, and assemble dashboards — all without writing code.</p>
+
+<h2>How to Use It</h2>
+
+<div class="step">
+  <span class="step-num">1</span> Click <strong>Insights</strong> from the Nest Home dashboard. It opens in a new browser tab.
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> To create a new query, click <strong>New Query</strong>. Select the data source tables and build your query using the visual builder or write raw SQL.
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> Run the query to see results in a table. Adjust filters, grouping, and sorting as needed.
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> To visualise the data, click <strong>Add Chart</strong> and select a chart type (bar, line, pie, etc.). Configure axes and labels.
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> Save your queries and charts, then add them to a <strong>Dashboard</strong> for an at-a-glance overview that you can share with your team.
+</div>
+
+<div class="note">
+Insights queries read directly from the database. Pre-built dashboards may already be available for your store — check the Dashboards section before building from scratch.
+</div>
+
+<a class="back-link" href="/app/nest-home">&larr; Back to Nest Home</a>
+
+</div>
+</body>
+</html>

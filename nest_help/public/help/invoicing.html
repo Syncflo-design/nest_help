@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoicing Workspace — NestERP Help</title>
+<style>
+:root { --accent: #1E6A52; --bg: #FAFAF8; --card: #fff; --text: #23201C; --muted: #888; --border: #e0ddd8; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 0; }
+.help-header { background: var(--accent); color: #fff; padding: 32px 40px 24px; }
+.help-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.help-header .subtitle { font-size: 14px; opacity: 0.8; }
+.help-body { max-width: 720px; margin: 0 auto; padding: 32px 40px 60px; }
+h2 { color: var(--accent); font-size: 18px; font-weight: 700; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+p { margin-bottom: 12px; }
+ul, ol { margin: 0 0 12px 24px; }
+li { margin-bottom: 6px; }
+.step { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; border-left: 4px solid var(--accent); }
+.step-num { display: inline-block; background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; font-weight: 700; margin-right: 8px; }
+.field { background: #f5f3ef; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; }
+.route { background: #e8f5e9; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; color: var(--accent); }
+.note { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+.note::before { content: "Note: "; font-weight: 700; }
+.back-link { display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+.back-link:hover { text-decoration: underline; }
+@media (max-width: 600px) { .help-header, .help-body { padding-left: 20px; padding-right: 20px; } }
+</style>
+</head>
+<body>
+<div class="help-header">
+  <h1>Invoicing Workspace</h1>
+  <div class="subtitle">NestERP Help</div>
+</div>
+<div class="help-body">
+  <h2>What This Does</h2>
+  <p>The Invoicing workspace centralizes all billing and collections activity. Create and manage <span class="field">Sales Invoices</span> to bill customers, track <span class="field">Purchase Invoices</span> from suppliers, and record <span class="field">Payment Entries</span> to reconcile incoming and outgoing payments. This workspace ties together the accounting documents that drive your cash flow, making it easy to see what is owed, what has been paid, and what remains outstanding.</p>
+
+  <h2>How to Get Here</h2>
+  <div class="step">
+    <span class="step-num">1</span> Click the <strong>Invoicing</strong> tile on your home page or navigate to <span class="route">/app/invoicing</span>.
+  </div>
+  <div class="step">
+    <span class="step-num">2</span> The Invoicing workspace opens with shortcuts to Sales Invoices, Purchase Invoices, Payment Entries, and related billing documents.
+  </div>
+
+  <div class="note">You can jump to any invoice or payment document instantly by pressing <strong>Ctrl+K</strong> and typing its name.</div>
+
+  <a href="/app/nest-home" class="back-link">&larr; Back to Home</a>
+</div>
+</body>
+</html>
