@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Import Home/Fashion Items — NestERP Help</title>
+<style>
+  :root { --accent: #1E6A52; --bg: #FAFAF8; --card: #fff; --text: #23201C; --muted: #888; --border: #e0ddd8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 0; }
+  .help-header { background: var(--accent); color: #fff; padding: 32px 40px 24px; }
+  .help-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .help-header .subtitle { font-size: 14px; opacity: 0.8; }
+  .help-body { max-width: 720px; margin: 0 auto; padding: 32px 40px 60px; }
+  h2 { color: var(--accent); font-size: 18px; font-weight: 700; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 12px 24px; }
+  li { margin-bottom: 6px; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; border-left: 4px solid var(--accent); }
+  .step-num { display: inline-block; background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; font-weight: 700; margin-right: 8px; }
+  .field { background: #f5f3ef; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; }
+  .route { background: #e8f5e9; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; color: var(--accent); }
+  .note { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+  .note::before { content: "Note: "; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--accent); color: #fff; text-align: left; padding: 10px 14px; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f8f7f5; }
+  .back-link { display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+  .back-link:hover { text-decoration: underline; }
+  @media (max-width: 600px) { .help-header, .help-body { padding-left: 20px; padding-right: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="help-header">
+  <h1>Import Home/Fashion Items</h1>
+  <div class="subtitle">NestERP Help</div>
+</div>
+
+<div class="help-body">
+
+<h2>What This Does</h2>
+<p>This tool imports Home and Fashion product lines from an Excel spreadsheet into ERPNext. It creates the Item records with all category-specific fields (sub category, collection, design, colour, base cloth, size) and pricing. If quantities are included, stock is automatically received into your chosen warehouse.</p>
+<p>New items are automatically synced to Sage after creation.</p>
+
+<h2>Steps</h2>
+
+<div class="step">
+  <span class="step-num">1</span> Click <strong>Import Home/Fashion</strong> from your home screen
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> Click <strong>Download Template</strong> (button at the top) to get the blank spreadsheet
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> Fill in the template with your items. Required columns: <span class="field">item_code</span> and <span class="field">item_name</span>. All other columns are optional but recommended.
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> Select the <span class="field">Company</span> the items belong to
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> Select <span class="field">Category</span>: <strong>Home</strong> or <strong>Fashion</strong>
+</div>
+
+<div class="step">
+  <span class="step-num">6</span> Select the <span class="field">Target Warehouse</span> where stock should be received (e.g. Main Distribution - ACT)
+</div>
+
+<div class="step">
+  <span class="step-num">7</span> Upload your completed Excel file using the <span class="field">Upload Excel File</span> field
+</div>
+
+<div class="step">
+  <span class="step-num">8</span> Click <strong>Save</strong> — the import runs automatically
+</div>
+
+<div class="note">
+The import log shows which items were created, skipped (already exist), or had errors. If you included quantities in the <span class="field">qty</span> column, a Stock Entry is created to receive the stock into the target warehouse.
+</div>
+
+<h2>Template Columns</h2>
+<table>
+  <tr><th>Column</th><th>Required</th><th>Description</th></tr>
+  <tr><td><span class="field">item_code</span></td><td>Yes</td><td>Unique item code</td></tr>
+  <tr><td><span class="field">item_name</span></td><td>Yes</td><td>Display name</td></tr>
+  <tr><td><span class="field">item_group</span></td><td>No</td><td>ERPNext Item Group (e.g. Ardmore Home - Cushions)</td></tr>
+  <tr><td><span class="field">sub_category</span></td><td>No</td><td>Cushions, Scarves, Fabric, Cards, etc.</td></tr>
+  <tr><td><span class="field">collection</span></td><td>No</td><td>Qalakabusha, Wonderboy, Sabie, Zambezi, etc.</td></tr>
+  <tr><td><span class="field">design</span></td><td>No</td><td>Product design from the catalogue</td></tr>
+  <tr><td><span class="field">colour</span></td><td>No</td><td>Magnolia, Teal, Charcoal, Coral, etc.</td></tr>
+  <tr><td><span class="field">base_cloth</span></td><td>No</td><td>Linen, Velvet, Silk, Outdoor, etc.</td></tr>
+  <tr><td><span class="field">size</span></td><td>No</td><td>Masterworks, Large, Medium, Small, or dimensions</td></tr>
+  <tr><td><span class="field">retail_price_excl_vat</span></td><td>No</td><td>Retail price excluding VAT</td></tr>
+  <tr><td><span class="field">retail_price_incl_vat</span></td><td>No</td><td>Retail price including VAT (sets the standard rate)</td></tr>
+  <tr><td><span class="field">wholesale_price_excl_vat</span></td><td>No</td><td>Wholesale price excluding VAT</td></tr>
+  <tr><td><span class="field">wholesale_price_incl_vat</span></td><td>No</td><td>Wholesale price including VAT</td></tr>
+  <tr><td><span class="field">item_cost</span></td><td>No</td><td>Cost price</td></tr>
+  <tr><td><span class="field">qty</span></td><td>No</td><td>Opening stock quantity (0 or blank = no stock receipt)</td></tr>
+</table>
+
+<a class="back-link" href="/app/nest-home">&larr; Back to Nest Home</a>
+
+</div>
+</body>
+</html>
