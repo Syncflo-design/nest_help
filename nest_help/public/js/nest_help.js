@@ -85,13 +85,14 @@
 		if ($('.nh-page-help-btn').length) return;
 		probe(slug, function(exists) {
 			if (!exists) return;
-			var $btn = $('<button class="btn btn-sm nh-page-help-btn" title="Help"'
-				+ ' style="background:#1E6A52;color:#fff;font-weight:700;margin-left:8px;'
-				+ 'padding:4px 12px;border:none;border-radius:4px;cursor:pointer;">? Help</button>');
+			// Reuse Frappe's own button classes so height/padding/baseline
+			// match the primary action exactly; nh-page-help-btn only recolours.
+			var $btn = $('<button class="btn btn-sm nh-page-help-btn" title="Help">'
+				+ '? Help</button>');
 			$btn.on('click', function() {
 				window.open(help_url(slug), '_blank');
 			});
-			// Insert next to the visible primary action button in the page header
+			// Insert just before the visible primary action button in the header
 			var $primary = $('.primary-action:visible').first();
 			if ($primary.length) {
 				$btn.insertBefore($primary);

@@ -15,3 +15,20 @@
 .nh-help-badge:hover {
   opacity: 1;
 }
+
+/* Route-based page help button (e.g. Data Export toolbar).
+   Inherits all metrics from Frappe's .btn .btn-sm — we only recolour and
+   space it, so it sits flush with the primary action button. */
+.nh-page-help-btn,
+.nh-page-help-btn:focus {
+  background: #1E6A52;
+  border-color: #1E6A52;
+  color: #fff;
+  font-weight: 600;
+  margin-right: 8px;
+}
+.nh-page-help-btn:hover {
+  background: #17533f;
+  border-color: #17533f;
+  color: #fff;
+}
