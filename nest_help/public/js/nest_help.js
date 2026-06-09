@@ -59,21 +59,17 @@
 	// Route-based help buttons — injected into page toolbars where
 	// data-help attributes aren't available (Frappe built-in pages).
 	var ROUTE_HELP = {
-		'data-export': 'data-export'
+		'Form/Data Export/Data Export': 'data-export'
 	};
 
 	// Route-specific page setup — defaults, pre-fills, etc.
 	var ROUTE_DEFAULTS = {
-		'data-export': function() {
+		'Form/Data Export/Data Export': function() {
 			// Default DocType to Item if not already set
-			var $doctype = $('input[data-fieldname="reference_doctype"]');
-			if ($doctype.length && !$doctype.val()) {
-				setTimeout(function() {
-					var w = cur_page && cur_page.page && cur_page.page.fields_dict
-						&& cur_page.page.fields_dict.reference_doctype;
-					if (w && !w.get_value()) w.set_value('Item');
-				}, 500);
-			}
+			setTimeout(function() {
+				var f = cur_frm && cur_frm.fields_dict && cur_frm.fields_dict.reference_doctype;
+				if (f && !f.get_value()) f.set_value('Item');
+			}, 800);
 		}
 	};
 
@@ -95,12 +91,12 @@
 			$btn.on('click', function() {
 				window.open(help_url(slug), '_blank');
 			});
-			// Insert next to the primary action button in the page header
-			var $primary = $('span.page-actions .primary-action, .page-head .primary-action').first();
+			// Insert next to the visible primary action button in the page header
+			var $primary = $('.primary-action:visible').first();
 			if ($primary.length) {
-				$btn.insertAfter($primary);
+				$btn.insertBefore($primary);
 			} else {
-				$('.page-actions').first().prepend($btn);
+				$('.page-actions:visible').first().prepend($btn);
 			}
 		});
 	}
