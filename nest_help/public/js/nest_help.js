@@ -56,6 +56,62 @@
 		);
 	}
 
+	// Route-based help buttons — injected into page toolbars where
+	// data-help attributes aren't available (Frappe built-in pages).
+	var ROUTE_HELP = {
+		'data-export': 'data-export'
+	};
+
+	// Route-specific page setup — defaults, pre-fills, etc.
+	var ROUTE_DEFAULTS = {
+		'data-export': function() {
+			// Default DocType to Item if not already set
+			var $doctype = $('input[data-fieldname="reference_doctype"]');
+			if ($doctype.length && !$doctype.val()) {
+				setTimeout(function() {
+					var w = cur_page && cur_page.page && cur_page.page.fields_dict
+						&& cur_page.page.fields_dict.reference_doctype;
+					if (w && !w.get_value()) w.set_value('Item');
+				}, 500);
+			}
+		}
+	};
+
+	function check_route_help() {
+		var route = (frappe.get_route() || []).join('/');
+		var slug = ROUTE_HELP[route];
+
+		// Run route defaults
+		if (ROUTE_DEFAULTS[route]) ROUTE_DEFAULTS[route]();
+
+		if (!slug) return;
+		// Avoid duplicates
+		if ($('.nh-page-help-btn').length) return;
+		probe(slug, function(exists) {
+			if (!exists) return;
+			var $btn = $('<button class="btn btn-sm nh-page-help-btn" title="Help"'
+				+ ' style="background:#1E6A52;color:#fff;font-weight:700;margin-left:8px;'
+				+ 'padding:4px 12px;border:none;border-radius:4px;cursor:pointer;">? Help</button>');
+			$btn.on('click', function() {
+				window.open(help_url(slug), '_blank');
+			});
+			// Insert next to the primary action button in the page header
+			var $primary = $('span.page-actions .primary-action, .page-head .primary-action').first();
+			if ($primary.length) {
+				$btn.insertAfter($primary);
+			} else {
+				$('.page-actions').first().prepend($btn);
+			}
+		});
+	}
+
+	// Re-check on every route change
+	$(document).on('page-change', function() {
+		setTimeout(check_route_help, 300);
+	});
+	// Also check on initial load
+	$(function() { setTimeout(check_route_help, 500); });
+
 	window.nestHelp = {
 		// Convert a display label to a help slug
 		slug: slug_from_label,

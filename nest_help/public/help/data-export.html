@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exporting Item Data — NestERP Help</title>
+<style>
+  :root { --accent: #1E6A52; --bg: #FAFAF8; --card: #fff; --text: #23201C; --muted: #888; --border: #e0ddd8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 0; }
+  .help-header { background: var(--accent); color: #fff; padding: 32px 40px 24px; }
+  .help-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .help-header .subtitle { font-size: 14px; opacity: 0.8; }
+  .help-body { max-width: 720px; margin: 0 auto; padding: 32px 40px 60px; }
+  h2 { color: var(--accent); font-size: 18px; font-weight: 700; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 0 0 12px 24px; }
+  li { margin-bottom: 6px; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; border-left: 4px solid var(--accent); }
+  .step-num { display: inline-block; background: var(--accent); color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 13px; font-weight: 700; margin-right: 8px; }
+  .field { background: #f5f3ef; border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 13px; }
+  .note { background: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+  .note::before { content: "Note: "; font-weight: 700; }
+  .tip { background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+  .tip::before { content: "Tip: "; font-weight: 700; color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--accent); color: #fff; text-align: left; padding: 10px 14px; font-weight: 600; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f8f7f5; }
+  .back-link { display: inline-block; margin-top: 24px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 14px; }
+  .back-link:hover { text-decoration: underline; }
+  @media (max-width: 600px) { .help-header, .help-body { padding-left: 20px; padding-right: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="help-header">
+  <h1>Exporting Item Data</h1>
+  <div class="subtitle">NestERP Help</div>
+</div>
+
+<div class="help-body">
+
+<h2>What This Does</h2>
+<p>The Data Export tool lets you download your item catalogue as an Excel spreadsheet. Use it to audit your data — check for missing fields, missing images, incomplete pricing, or items that need updating.</p>
+
+<h2>Getting There</h2>
+
+<div class="step">
+  <span class="step-num">1</span> From the home screen, click <strong>Items</strong> (or navigate to the Item list)
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> Click the <strong>Export Data</strong> button in the top bar
+</div>
+
+<h2>Setting Up Your Export</h2>
+
+<div class="step">
+  <span class="step-num">3</span> <strong>DocType</strong> is pre-set to <span class="field">Item</span> — leave this as is
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> <strong>File Type</strong> — select <span class="field">Excel</span>
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> <strong>Select fields to export.</strong> Click on a field name to add it to your export. The fields you need depend on what you're auditing — see the tables below for each product category.
+</div>
+
+<div class="step">
+  <span class="step-num">6</span> <strong>Add filters</strong> to narrow down which items are exported. For example:
+  <ul style="margin-top: 8px;">
+    <li><span class="field">Category</span> = <strong>Home</strong> (for Home items only)</li>
+    <li><span class="field">Category</span> = <strong>Fashion</strong> (for Fashion items only)</li>
+    <li><span class="field">Category</span> = <strong>Ceramics</strong> (for Ceramics items only)</li>
+    <li><span class="field">Item Group</span> like <strong>Ardmore Home%</strong> (all Home sub-groups)</li>
+  </ul>
+</div>
+
+<div class="step">
+  <span class="step-num">7</span> Click <strong>Export</strong> — the Excel file downloads to your computer
+</div>
+
+<h2>Recommended Fields — Ceramics</h2>
+<table>
+  <tr><th>Field</th><th>Why</th></tr>
+  <tr><td><span class="field">Item Code</span></td><td>Unique identifier</td></tr>
+  <tr><td><span class="field">Item Name</span></td><td>Display name</td></tr>
+  <tr><td><span class="field">Category</span></td><td>Ceramics / Home / Fashion</td></tr>
+  <tr><td><span class="field">Sub Category</span></td><td>Product sub-type</td></tr>
+  <tr><td><span class="field">Collection</span></td><td>Design collection</td></tr>
+  <tr><td><span class="field">Design</span></td><td>Product design</td></tr>
+  <tr><td><span class="field">Colour</span></td><td>Primary colour</td></tr>
+  <tr><td><span class="field">Sculptor</span></td><td>Sculptor name</td></tr>
+  <tr><td><span class="field">Thrower</span></td><td>Thrower name</td></tr>
+  <tr><td><span class="field">Painter</span></td><td>Painter name</td></tr>
+  <tr><td><span class="field">Condition</span></td><td>Item condition (1st, 2nd, 3rd)</td></tr>
+  <tr><td><span class="field">Image</span></td><td>Check for missing product photos</td></tr>
+  <tr><td><span class="field">Description</span></td><td>Product description text</td></tr>
+</table>
+
+<h2>Recommended Fields — Home / Fashion</h2>
+<table>
+  <tr><th>Field</th><th>Why</th></tr>
+  <tr><td><span class="field">Item Code</span></td><td>Unique identifier</td></tr>
+  <tr><td><span class="field">Item Name</span></td><td>Display name</td></tr>
+  <tr><td><span class="field">Category</span></td><td>Home or Fashion</td></tr>
+  <tr><td><span class="field">Sub Category</span></td><td>Cushions, Scarves, Fabric, etc.</td></tr>
+  <tr><td><span class="field">Collection</span></td><td>Design collection</td></tr>
+  <tr><td><span class="field">Design</span></td><td>Product design</td></tr>
+  <tr><td><span class="field">Colour</span></td><td>Primary colour</td></tr>
+  <tr><td><span class="field">Base Cloth</span></td><td>Linen, Velvet, Silk, etc.</td></tr>
+  <tr><td><span class="field">Size</span></td><td>Dimensions or size label</td></tr>
+  <tr><td><span class="field">Image</span></td><td>Check for missing product photos</td></tr>
+  <tr><td><span class="field">Description</span></td><td>Product description text</td></tr>
+</table>
+
+<div class="tip">
+To quickly spot gaps, open the downloaded Excel, sort by the column you want to check (e.g. Image), and scroll to the blanks. Any row without an image URL needs a photo uploaded.
+</div>
+
+<div class="note">
+The export downloads what's currently in the system. It does not modify any data — it's safe to run as often as you like.
+</div>
+
+<a class="back-link" href="/app/nest-home">&larr; Back to Nest Home</a>
+
+</div>
+</body>
+</html>
