@@ -109,6 +109,55 @@
 	// Also check on initial load
 	$(function() { setTimeout(check_route_help, 500); });
 
+	// ------------------------------------------------------------------
+	// POS crash shim (Ardmore, 2026-07-20).
+	//
+	// The third-party `server_script` app (Mata101/server_script) appends a
+	// sales-rep <select> to the POS page title. Its injection loop indexes
+	// pills by page-title position:
+	//
+	//   for (i = 0; i < $('div[class="page-title"]').length; i++)
+	//       $('span[class="indicator-pill no-indicator-dot whitespace-nowrap blue"]')[i].style...
+	//
+	// When any desk page (e.g. nest-home) contributes a page-title WITHOUT a
+	// pill span matching that exact class attribute, pills[i] is undefined and
+	// the TypeError intermittently kills the POS Recent-Orders summary, hiding
+	// the Return button. We cannot edit that app, so we make its assumption
+	// true instead: every exact-match page-title gets a hidden pill span, so
+	// the indexed lookup always finds an element. Cosmetic-only side effect
+	// (marginRight on a hidden span). Remove once the upstream app is fixed.
+	// See CoWork_Helper/gotchas/2026-07-20-frappe-pos-page-custom-script-breaks-returns.md
+	// ------------------------------------------------------------------
+	var PILL_CLASS = 'indicator-pill no-indicator-dot whitespace-nowrap blue';
+
+	function pad_page_title_pills() {
+		var titles = document.querySelectorAll('div[class="page-title"]');
+		for (var i = 0; i < titles.length; i++) {
+			if (!titles[i].querySelector('span[class="' + PILL_CLASS + '"]')) {
+				var s = document.createElement('span');
+				s.className = PILL_CLASS;
+				s.style.display = 'none';
+				s.setAttribute('data-nh-pill-shim', '1');
+				titles[i].appendChild(s);
+			}
+		}
+	}
+
+	var _pill_timer = null;
+	function schedule_pill_pad() {
+		if (_pill_timer) return;
+		_pill_timer = setTimeout(function() {
+			_pill_timer = null;
+			pad_page_title_pills();
+		}, 100);
+	}
+
+	$(function() {
+		pad_page_title_pills();
+		new MutationObserver(schedule_pill_pad)
+			.observe(document.body, { childList: true, subtree: true });
+	});
+
 	window.nestHelp = {
 		// Convert a display label to a help slug
 		slug: slug_from_label,
