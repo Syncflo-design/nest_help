@@ -152,10 +152,116 @@
 		}, 100);
 	}
 
+	// ------------------------------------------------------------------
+	// POS item-tile barcode (Ardmore, 2026-08-03).
+	//
+	// Every Item now carries a generated 8-digit POS barcode
+	// (Item.custom_pos_barcode) and that is what the shelf sticker encodes.
+	// Printing it under the tile lets a cashier confirm they picked the right
+	// product, and key the number in by hand when a sticker is missing or
+	// unreadable. `point-of-sale` is a standard ERPNext Page, so its JS cannot
+	// be reached from a Client Script — hence this shim.
+	//
+	// Barcodes come from nest_home.pos_pricing.get_pos_barcodes and are cached
+	// per item code (including a cached blank, so an item without a barcode is
+	// never requested twice).
+	// ------------------------------------------------------------------
+	var POS_CODE_CLASS = 'nh-pos-code';
+	var _bc_cache = {};
+	var _bc_inflight = false;
+
+	function decode_item_code(raw) {
+		if (!raw) return '';
+		try {
+			return decodeURIComponent(raw);
+		} catch (e) {
+			// ERPNext writes this attribute with the legacy escape(), which
+			// decodeURIComponent rejects for some byte sequences.
+		}
+		try {
+			return unescape(raw);
+		} catch (e2) {
+			return raw;
+		}
+	}
+
+	function ensure_pos_code_style() {
+		if (document.getElementById('nh-pos-code-style')) return;
+		var st = document.createElement('style');
+		st.id = 'nh-pos-code-style';
+		st.textContent = '.' + POS_CODE_CLASS + '{font-size:11px;letter-spacing:0.04em;'
+			+ 'color:var(--text-muted,#8d99a6);margin-top:2px;'
+			+ 'font-variant-numeric:tabular-nums;white-space:nowrap;}';
+		document.head.appendChild(st);
+	}
+
+	function paint_pos_codes() {
+		var wrappers = document.querySelectorAll('.item-wrapper[data-item-code]');
+		if (!wrappers.length) return;
+		ensure_pos_code_style();
+
+		var missing = [];
+
+		for (var i = 0; i < wrappers.length; i++) {
+			var w = wrappers[i];
+			var code = decode_item_code(w.getAttribute('data-item-code'));
+			if (!code) continue;
+
+			if (!(code in _bc_cache)) {
+				if (missing.indexOf(code) === -1) missing.push(code);
+				continue;
+			}
+			if (!_bc_cache[code]) continue;
+
+			var detail = w.querySelector('.item-detail') || w;
+			if (detail.querySelector('.' + POS_CODE_CLASS)) continue;
+
+			var d = document.createElement('div');
+			d.className = POS_CODE_CLASS;
+			d.textContent = _bc_cache[code];
+			detail.appendChild(d);
+		}
+
+		if (!missing.length || _bc_inflight) return;
+
+		_bc_inflight = true;
+		frappe.call({
+			method: 'nest_home.pos_pricing.get_pos_barcodes',
+			args: { item_codes: JSON.stringify(missing) },
+			callback: function(r) {
+				var map = (r && r.message && r.message.barcodes) || {};
+				for (var j = 0; j < missing.length; j++) {
+					_bc_cache[missing[j]] = map[missing[j]] || '';
+				}
+				_bc_inflight = false;
+				paint_pos_codes();
+			},
+			error: function() {
+				// Cache blanks so a failing call cannot become a request loop.
+				for (var k = 0; k < missing.length; k++) {
+					_bc_cache[missing[k]] = '';
+				}
+				_bc_inflight = false;
+			}
+		});
+	}
+
+	var _pos_timer = null;
+	function schedule_pos_codes() {
+		if (_pos_timer) return;
+		_pos_timer = setTimeout(function() {
+			_pos_timer = null;
+			paint_pos_codes();
+		}, 150);
+	}
+
 	$(function() {
 		pad_page_title_pills();
-		new MutationObserver(schedule_pill_pad)
-			.observe(document.body, { childList: true, subtree: true });
+		schedule_pos_codes();
+		new MutationObserver(function() {
+			schedule_pill_pad();
+			schedule_pos_codes();
+		}).observe(document.body, { childList: true, subtree: true });
 	});
 
 	window.nestHelp = {
