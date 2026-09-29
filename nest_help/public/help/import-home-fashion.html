@@ -100,7 +100,16 @@ The import log shows which items were created, skipped (already exist), or had e
   <tr><td><span class="field">wholesale_price_incl_vat</span></td><td>No</td><td>Wholesale price including VAT</td></tr>
   <tr><td><span class="field">item_cost</span></td><td>No</td><td>Cost price</td></tr>
   <tr><td><span class="field">qty</span></td><td>No</td><td>Opening stock quantity (0 or blank = no stock receipt)</td></tr>
+  <tr><td><span class="field">uom</span></td><td>No</td><td>Unit of measure: <strong>Each</strong> or <strong>Meter</strong>. Blank = Each. Use Meter for fabric sold by the metre.</td></tr>
 </table>
+
+<div class="note">
+<strong>Unit of measure is set once.</strong> The unit is fixed when the item is created and cannot be changed by a later import. If the <span class="field">uom</span> value is not recognised, that item is <strong>not created</strong> and the import log tells you which row to correct. For an item that already exists, a different unit in the sheet is ignored and reported in the log.
+</div>
+
+<div class="note">
+The template has a second sheet, <strong>Allowed values</strong>, listing what the import accepts for sub_category, collection, design, colour, base_cloth, size and uom. A value that is not on the list is rejected for that field. Ask for new values to be added before you import.
+</div>
 
 <a class="back-link" href="/app/nest-home">&larr; Back to Nest Home</a>
 
