@@ -255,12 +255,46 @@
 		}, 150);
 	}
 
+	// POS opening dialog help (Ardmore, 2026-09-30).
+	// ERPNext opens "Create POS Opening Entry" as a static dialog: no close
+	// button, Esc does nothing, and it can end up sitting over the home screen
+	// when nest_home pulls the user back while the till is loading. Staff were
+	// closing the whole browser tab to get out of it. This adds a line of help
+	// at the top of the box and a "Not now" button that hides it and returns to
+	// the home screen. Nothing else about the dialog is touched.
+	var OPENING_TITLE = 'Create POS Opening Entry';
+
+	function decorate_pos_opening_dialog() {
+		var d = window.cur_dialog;
+		if (!d || !d.$wrapper || !d.$body) return;
+		if (d.title !== OPENING_TITLE && d.title !== __(OPENING_TITLE)) return;
+		if (d.$wrapper.attr('data-nh-opening-help')) return;
+		if (!d.$wrapper.hasClass('show') && !d.$wrapper.is(':visible')) return;
+		d.$wrapper.attr('data-nh-opening-help', '1');
+		d.$body.prepend(
+			'<div class="nh-opening-help text-muted" style="margin:0 0 12px;line-height:1.5;">' +
+			'This opens the till for today. Choose your <b>POS Profile</b>, leave the opening amounts on 0 unless you are carrying money over, then click <b>Submit</b>.<br>' +
+			'Not ready to open the till? Click <b>Not now</b> to go back to the home screen.' +
+			'</div>'
+		);
+		d.set_secondary_action_label(__('Not now'));
+		d.set_secondary_action(function() {
+			d.hide();
+			frappe.set_route('nest-home');
+		});
+	}
+
+	$(document).on('shown.bs.modal', function() {
+		setTimeout(decorate_pos_opening_dialog, 0);
+	});
+
 	$(function() {
 		pad_page_title_pills();
 		schedule_pos_codes();
 		new MutationObserver(function() {
 			schedule_pill_pad();
 			schedule_pos_codes();
+			decorate_pos_opening_dialog();
 		}).observe(document.body, { childList: true, subtree: true });
 	});
 

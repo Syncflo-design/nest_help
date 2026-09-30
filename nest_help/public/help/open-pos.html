@@ -36,30 +36,98 @@
 
 <div class="help-body">
 
-<h2>How to Open Point of Sale</h2>
+<h2>Opening the Till</h2>
 
 <div class="step">
   <span class="step-num">1</span> Click <strong>Open POS</strong> from the Nest Home dashboard.
 </div>
 
 <div class="step">
-  <span class="step-num">2</span> In the <span class="field">Select POS User</span> dropdown, select your name.
+  <span class="step-num">2</span> The first time each day the till asks you to open it. Choose your <span class="field">POS Profile</span> (your store), enter the opening amount for each payment type (enter <strong>0</strong> if there is nothing to carry over) and click <strong>Submit</strong>. This applies to the online store till as well.
 </div>
 
 <div class="step">
-  <span class="step-num">3</span> The POS screen loads with your store's inventory. Search or scan items to add them to the cart.
-</div>
-
-<div class="step">
-  <span class="step-num">4</span> Adjust quantities as needed using the item controls in the cart.
-</div>
-
-<div class="step">
-  <span class="step-num">5</span> Select the payment method (cash, card, etc.) and complete the sale.
+  <span class="step-num">3</span> In the <span class="field">Select POS User</span> dropdown, select your name.
 </div>
 
 <div class="note">
-Your name must be added to the store's POS Profile before it appears in the dropdown. If you don't see your name, ask your manager to add you.
+If the opening box appears and you do not want to open the till, click <strong>Not now</strong> to go back to the home screen (or press <strong>F5</strong> to reload the page). If you see a red message <strong>Outdated POS Opening Entry</strong>, yesterday's till was never closed. Go to <strong>POS Closing</strong> on the home screen, close the old entry, then click Open POS again.
+</div>
+
+<h2>Making a Sale</h2>
+
+<div class="step">
+  <span class="step-num">1</span> Find the item. Type part of the name, the item code or the 8-digit item number in the search box, or scan the barcode. Each tile shows the full item name, the item code and item number on one line, and the price at the bottom.
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> Click the tile to add the item to the cart.
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> To change the quantity, click the quantity box on the cart line, type the quantity and press <strong>Enter</strong> (or click anywhere else). Type <strong>0</strong> to remove the line.
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> Click <strong>Checkout</strong>.
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> Choose how the customer is paying: <strong>Credit Card</strong> or <strong>Voucher</strong>. Credit Card is filled in with the full amount for you.
+</div>
+
+<div class="step">
+  <span class="step-num">6</span> Click <strong>Complete Order</strong>. The sale is finished straight away and the receipt screen opens. There is no further confirmation.
+</div>
+
+<div class="note">
+Items sold by the unit (Each) take whole numbers only. Items sold by the metre take part quantities, for example 2.5 or 2,5. The till refuses a quantity that is more than the stock in your store.
+</div>
+
+<h2>Paying with a Voucher</h2>
+
+<div class="step">
+  <span class="step-num">1</span> On the payment screen click <strong>Voucher</strong> and type the voucher amount. Amounts are typed with the cents, so R500.00 is <span class="field">5 0 0 0 0</span>.
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> If the voucher covers only part of the sale, the rest moves to Credit Card automatically.
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> Click <strong>Complete Order</strong>. The till asks for the <span class="field">Voucher Reference No.</span> Type the number on the voucher and click <strong>Save</strong>.
+</div>
+
+<p>The voucher number is stored on the invoice and printed on the receipt.</p>
+
+<h2>Returns and Refunds</h2>
+
+<div class="step">
+  <span class="step-num">1</span> In the till, click <strong>Recent Orders</strong> at the top right.
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> Select the original sale from the list. Use the <strong>Sales</strong> / <strong>Returns</strong> filter and the search box to find it.
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> Click <strong>Return</strong>.
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> Tick the items the customer is bringing back, adjust the quantity if only some are returned, and click <strong>Return ticked items</strong>.
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> Click <strong>Checkout</strong>, then <strong>Complete Order</strong>. The refund goes to <strong>Credit Card</strong>. A refund cannot be paid out as a voucher.
+</div>
+
+<h2>What Happens in Sage</h2>
+
+<p>Every sale and every return is sent to Sage as soon as it is completed, and Sage stock is adjusted. You do not have to do anything. If Sage cannot be reached, the sale still goes through on the till and the system sends it again automatically every 15 minutes.</p>
+
+<div class="note">
+Your name must be added to the store's POS Profile before it appears in the dropdown. If you don't see your name, ask your manager to add you. Close the till with <strong>POS Closing</strong> at the end of every day.
 </div>
 
 <a class="back-link" href="/app/nest-home">&larr; Back to Nest Home</a>

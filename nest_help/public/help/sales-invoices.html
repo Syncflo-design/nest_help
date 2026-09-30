@@ -42,7 +42,20 @@
 <div class="help-body">
 
 <h2>What This Does</h2>
-<p>The Sales Invoices tile opens a list of all sales invoices for your store. You can see invoice status (Draft, Submitted, Paid, Overdue), customer details, and totals. Use this to track your sales history and outstanding payments.</p>
+<p>The Sales Invoices tile opens a list of all sales invoices for your store. Every till sale is a sales invoice, and every till return is a credit note in the same list. You can see invoice status (Draft, Submitted, Paid, Return), customer details, and totals. Use this to track your sales history and outstanding payments.</p>
+
+<h2>Sage Sync Status</h2>
+<p>Each invoice and credit note is sent to Sage when it is submitted. The <span class="field">Sage Sync Status</span> field shows where it stands. You can filter the list on it.</p>
+
+<table>
+  <tr><th>Status</th><th>What it means</th><th>What to do</th></tr>
+  <tr><td>Synced</td><td>The document is in Sage. The Sage document number is shown on the invoice.</td><td>Nothing.</td></tr>
+  <tr><td>Failed</td><td>Sage refused the document or could not be reached. The reason is shown in <span class="field">Sage Sync Error</span>.</td><td>Nothing at first. The system tries again every 15 minutes, up to 8 times. If it still fails, fix the cause shown in the error, then use <strong>Send to Sage</strong>.</td></tr>
+  <tr><td>Check Sage</td><td>The connection dropped after the document was sent. Sage may or may not have it. It is not sent again automatically, because that could create a duplicate.</td><td>Look in Sage for the invoice number. Only if it is not there, use <strong>Send to Sage</strong>.</td></tr>
+</table>
+
+<h3>Send to Sage</h3>
+<p>Open the invoice from this list. On a document that is Failed or Check Sage a <strong>Send to Sage</strong> button appears at the top of the form. The button is on the back-office form only, not on the till.</p>
 
 <div class="note">
 Use the filters and search bar at the top of the list to find specific records quickly.
