@@ -32,8 +32,12 @@
 			.replace(/^-+|-+$/g, '');
 	}
 
+	// Frappe Cloud serves /assets/ with a one-year immutable cache, so a help page
+	// a browser has seen once never updates. The app version changes every
+	// release, so carrying it on the URL makes the browser fetch the new page.
 	function help_url(slug) {
-		return HELP_BASE + slug + '.html';
+		var v = (frappe.boot && frappe.boot.versions && frappe.boot.versions.nest_help) || '0';
+		return HELP_BASE + slug + '.html?v=' + encodeURIComponent(v);
 	}
 
 	function probe(slug, callback) {
