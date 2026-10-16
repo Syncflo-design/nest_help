@@ -55,11 +55,15 @@
 </div>
 
 <div class="step">
-  <span class="step-num">5</span> Stock is received into the designated warehouse. Review the created items to confirm everything imported correctly.
+  <span class="step-num">5</span> New pieces are created in Sage with their price and quantity, and the stock lands in Main Distribution. Review the log to confirm everything imported correctly.
 </div>
 
 <div class="note">
-Make sure the Excel file follows the expected column format. If items already exist with the same code, the system will update quantities rather than create duplicates.
+Make sure the Excel file follows the expected column format: keep both header rows, data from row 3.
+</div>
+
+<div class="note">
+<strong>A piece that already exists</strong> has its details updated (name, size, artists, cost) and nothing else. Its price is <strong>not</strong> changed, because once an item is in Sage, Sage owns the price: change it in Sage and the tills follow within 15 minutes. No quantity is added either, because there is only ever one of each ceramics piece. The log says <em>Price NOT changed</em> or <em>Quantity NOT added</em> for such rows. If a stock figure is wrong, fix it with a Stock Entry or a transfer.
 </div>
 
 <a class="back-link" href="/desk/nest-home">&larr; Back to Nest Home</a>

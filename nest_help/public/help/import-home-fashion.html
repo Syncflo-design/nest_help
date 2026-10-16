@@ -41,8 +41,8 @@
 <div class="help-body">
 
 <h2>What This Does</h2>
-<p>This tool imports Home and Fashion product lines from an Excel spreadsheet into ERPNext. It creates the Item records with all category-specific fields (sub category, collection, design, colour, base cloth, size) and pricing. If quantities are included, stock is automatically received into your chosen warehouse.</p>
-<p>New items are automatically synced to Sage after creation.</p>
+<p>This tool imports Home and Fashion product lines from an Excel spreadsheet into ERPNext. For a new item it creates the Item record with all category-specific fields (sub category, collection, design, colour, base cloth, size), sets the price and receives the quantity into your chosen warehouse. New items are created in Sage with that price and quantity.</p>
+<p><strong>An item that already exists</strong> has its details updated and its sheet quantity <strong>added</strong> to stock. Its price is <strong>not</strong> changed: once an item is in Sage, Sage owns the price. Change it in Sage and the tills follow within 15 minutes; the log says <em>Price NOT changed</em> if the sheet price differs.</p>
 
 <h2>Steps</h2>
 
@@ -95,11 +95,11 @@ The import log shows which items were created, skipped (already exist), or had e
   <tr><td><span class="field">base_cloth</span></td><td>No</td><td>Linen, Velvet, Silk, Outdoor, etc.</td></tr>
   <tr><td><span class="field">size</span></td><td>No</td><td>Masterworks, Large, Medium, Small, or dimensions</td></tr>
   <tr><td><span class="field">retail_price_excl_vat</span></td><td>No</td><td>Retail price excluding VAT</td></tr>
-  <tr><td><span class="field">retail_price_incl_vat</span></td><td>No</td><td>Retail price including VAT (sets the standard rate)</td></tr>
+  <tr><td><span class="field">retail_price_incl_vat</span></td><td>No</td><td>Retail price including VAT. Used only when the row creates the item</td></tr>
   <tr><td><span class="field">wholesale_price_excl_vat</span></td><td>No</td><td>Wholesale price excluding VAT</td></tr>
   <tr><td><span class="field">wholesale_price_incl_vat</span></td><td>No</td><td>Wholesale price including VAT</td></tr>
   <tr><td><span class="field">item_cost</span></td><td>No</td><td>Cost price</td></tr>
-  <tr><td><span class="field">qty</span></td><td>No</td><td>Opening stock quantity (0 or blank = no stock receipt)</td></tr>
+  <tr><td><span class="field">qty</span></td><td>No</td><td>Quantity to bring in (0 or blank = no stock receipt). For an item that already exists it is ADDED to stock, so import each sheet once</td></tr>
   <tr><td><span class="field">uom</span></td><td>No</td><td>Unit of measure: <strong>Each</strong> or <strong>Meter</strong>. Blank = Each. Use Meter for fabric sold by the metre.</td></tr>
 </table>
 
